@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MFCApplication1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MFCApplication1Dlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="INPTBOX.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="repalcetxt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlscripts.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MFCApplication1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MFCApplication1Dlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="INPTBOX.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="repalcetxt.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlscripts.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MFCApplication1.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\MFCApplication1.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\WMSAPPDATA.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\MFCApplication1.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\sql\0.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\1.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\2.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\3.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\4.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\5.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\6.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\7.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\8.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\9.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\10.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\11.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\12.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\13.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\14.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\15.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\16.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="res\sql\Cross Training - Minisoft.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
