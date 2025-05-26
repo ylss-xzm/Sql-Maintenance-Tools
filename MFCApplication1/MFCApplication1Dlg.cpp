@@ -16,12 +16,12 @@
 #endif
 
 
-// 用于应用程序“关于”菜单项的 CMFCApplication1 对话框
+// 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
-class CMFCApplication1 : public CDialogEx
+class CAboutDlg : public CDialogEx
 {
 public:
-	CMFCApplication1();
+	CAboutDlg();
 
 	// 对话框数据
 #ifdef AFX_DESIGN_TIME
@@ -34,26 +34,21 @@ protected:
 // 实现
 protected:
 	DECLARE_MESSAGE_MAP()
-public:
-
-
-	//	virtual void PostNcDestroy();
 };
 
-CMFCApplication1::CMFCApplication1() : CDialogEx(IDD_ABOUTBOX)
+CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
 {
 }
 
-void CMFCApplication1::DoDataExchange(CDataExchange* pDX)
+void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 }
 
-BEGIN_MESSAGE_MAP(CMFCApplication1, CDialogEx)
-
-
+BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 
 END_MESSAGE_MAP()
+
 
 
 // CMFCApplication1Dlg 对话框
@@ -71,7 +66,7 @@ void CMFCApplication1Dlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 
 	DDX_Control(pDX, IDC_LIST1, m_list);
-	DDX_Control(pDX, IDC_EDIT1, m_Edit);
+	DDX_Control(pDX, IDC_RICHEDIT21, m_Edit);
 }
 
 BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
@@ -88,7 +83,12 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_MESSAGE(WM_MY_DIALOG_CLOSED, &CMFCApplication1Dlg::OnMtMessage)
 	ON_COMMAND(ID_32776, &CMFCApplication1Dlg::On32776)
 	ON_WM_CTLCOLOR()
-	ON_EN_CHANGE(IDC_EDIT1, &CMFCApplication1Dlg::OnEnChangeEdit3)
+
+	ON_WM_SYSCOMMAND()
+	ON_WM_PAINT()
+	ON_WM_QUERYDRAGICON()
+
+	ON_COMMAND(ID_32779, &CMFCApplication1Dlg::On32779)
 END_MESSAGE_MAP()
 
 
@@ -135,7 +135,13 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 
 	ListBoxFormat();
 
+	strTempFile = CreateTemphtml.CreateTempHtmlFromResource(IDR_HTML1);//初始化的时候来生成临时的html文件方便后续调用
 
+
+	 if (!m_ClipboardHistoryManager.StartListening())
+	 {
+		 AfxMessageBox(_T("无法启动剪切板监听器！"));
+	 }
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -144,7 +150,7 @@ void CMFCApplication1Dlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
 	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
 	{
-		CMFCApplication1Dlg dlgAbout;
+		CAboutDlg dlgAbout;
 		dlgAbout.DoModal();
 	}
 	else
@@ -193,7 +199,7 @@ HCURSOR CMFCApplication1Dlg::OnQueryDragIcon()
 void CMFCApplication1Dlg::On32774()
 {
 	// TODO: 在此添加命令处理程序代码
-	GetDlgItem(IDC_EDIT1)->SetWindowText(_T(""));
+	GetDlgItem(IDC_RICHEDIT21)->SetWindowText(_T(""));
 
 	//MessageBox(_T("XXXX"));
 }
@@ -228,19 +234,19 @@ void CMFCApplication1Dlg::On32771()
 		strLine.Trim();
 		if (nLineCount > 980)
 		{
-			str = DataProcessLogica(i, nLineCount, strLine, str, CLNAME1);
+			str = DataProcess.DataProcessLogic(i, nLineCount, strLine, str, CLNAME1);
 
 		}
 		else
 		{
-			str = DataProcessLogic(i, nLineCount, strLine, str);
+			str = DataProcess.DataProcessLogic(i, nLineCount, strLine, str);
 		}
 		//MessageBox(str);
 	}
 
 
 	//str = "I AM  WMS_L1";
-	GetDlgItem(IDC_EDIT1)->SetWindowText(str);
+	GetDlgItem(IDC_RICHEDIT21)->SetWindowText(str);
 	//MessageBox(_T("处理完成"));
 }
 
@@ -270,81 +276,12 @@ void CMFCApplication1Dlg::OnLbnDblclkList1()
 
 	//AfxMessageBox(str1);
 
-	GetDlgItem(IDC_EDIT1)->SetWindowText(str1);
+	GetDlgItem(IDC_RICHEDIT21)->SetWindowText(str1);
 
 
 }
 
 
-CString CMFCApplication1Dlg::DataProcessLogic(int i, int nLineCount, CString strLine, CString str)
-{
-	// TODO: 在此处添加实现代码.
-	CString strdate = str;
-	CString strLine1 = strLine;
-
-
-	if (i == 0) {
-
-		if (strLine1.IsEmpty() == false)
-			strdate = _T("'") + strLine1 + _T("'");
-
-	}
-	else if (i == nLineCount - 1)
-	{
-		if (strLine1.IsEmpty() == false)
-			strdate = strdate + _T(",'") + strLine1 + _T("'");
-	}
-	else
-	{
-		if (strLine1.IsEmpty() == false)
-			strdate = strdate + _T(",'") + strLine1 + _T("'");
-	}
-
-	return strdate;
-}
-
-
-
-CString CMFCApplication1Dlg::DataProcessLogica(int i, int nLineCount, CString strLine, CString str, CString CLNAME1)
-{
-	// TODO: 在此处添加实现代码.
-	CString strdate = str;
-	CString strLine1 = strLine;
-	CString CLNAME2 = CLNAME1;
-
-	if (i == 0) {
-
-		if (strLine1.IsEmpty() == false)
-			strdate = CLNAME2 + _T(" IN (") + _T("'") + strLine1 + _T("'");
-
-	}
-	else if (i == nLineCount - 1)
-	{
-		if (strLine1.IsEmpty() == false)
-		{
-			strdate = strdate + _T(",'") + strLine1 + _T("' )");
-		}
-		else
-		{
-			strdate = strdate + _T(")");
-		}
-
-	}
-	else if (i % 980 == 0)
-	{
-		if (strLine1.IsEmpty() == false)
-			strdate = strdate + _T(") OR ") + CLNAME2 + _T(" IN (") + _T("'") + strLine1 + _T("'");
-	}
-	else
-	{
-
-		if (strLine1.IsEmpty() == false)
-			strdate = strdate + _T(",'") + strLine1 + _T("'");
-
-	}
-
-	return strdate;
-}
 
 
 
@@ -359,7 +296,7 @@ void CMFCApplication1Dlg::On32775()
 
 	//AfxMessageBox(str1);
 
-	GetDlgItem(IDC_EDIT1)->SetWindowText(str1);
+	GetDlgItem(IDC_RICHEDIT21)->SetWindowText(str1);
 
 
 }
@@ -375,7 +312,7 @@ void CMFCApplication1Dlg::On32772()
 		pTD = new repalcetxt();
 		pTD->Create(IDD_DIALOG2, this);
 		pTD->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_EDIT1)->GetWindowText(Ptxt);
+		GetDlgItem(IDC_RICHEDIT21)->GetWindowText(Ptxt);
 	}
 	else
 	{
@@ -397,7 +334,7 @@ afx_msg LRESULT CMFCApplication1Dlg::OnMtMessage(WPARAM wParam, LPARAM lParam)
 
 	Ptxt.Replace(reptxt1, reptxt2);
 
-	GetDlgItem(IDC_EDIT1)->SetWindowText(Ptxt);
+	GetDlgItem(IDC_RICHEDIT21)->SetWindowText(Ptxt);
 	MessageBox(_T("字符替换成功"));
 	pTD = NULL;
 	delete pDialog;
@@ -405,107 +342,16 @@ afx_msg LRESULT CMFCApplication1Dlg::OnMtMessage(WPARAM wParam, LPARAM lParam)
 }
 
 
-
-void CMFCApplication1Dlg::OnEnChangeEdit3()
-{
-	// TODO:  如果该控件是 RICHEDIT 控件，它将不
-	// 发送此通知，除非重写 CDialogEx::OnInitDialog()
-	// 函数并调用 CRichEditCtrl().SetEventMask()，
-	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
-
-	// TODO:  在此添加控件通知处理程序代码
-}
-
-
-
-// 使用数据URL打开HTML资源的主函数
-void OpenHtmlResourceViaDataUrl(LPCTSTR lpszFilePath)
-{
-	if (PathFileExists(lpszFilePath))
-	{
-		HINSTANCE hResult = ShellExecute(NULL, _T("open"), lpszFilePath, NULL, NULL, SW_SHOW);
-		if ((INT_PTR)hResult <= 32)
-		{
-			CString strError;
-			strError.Format(_T("无法打开HTML文件，错误代码: %d"), (INT_PTR)hResult);
-			AfxMessageBox(strError);
-		}
-	}
-	else
-	{
-		AfxMessageBox(_T("HTML文件不存在"));
-	}
-
-}
-
-
-CString CMFCApplication1Dlg::CreateTempHtmlFromResource(UINT nIDResource)
-{
-	// 1. 查找HTML资源
-	HRSRC hResource = FindResource(AfxGetResourceHandle(),
-		MAKEINTRESOURCE(nIDResource),
-		RT_HTML);
-	if (!hResource)
-	{
-		DWORD dwError = GetLastError();
-		CString strError;
-		strError.Format(_T("查找HTML资源失败!\n错误代码: %d\n"), dwError);
-
-		// 常见错误代码解释
-		if (dwError == 1813) // RESOURCE TYPE NOT FOUND
-			strError += _T("资源类型未找到，请确认资源类型是否为'HTML'");
-		else if (dwError == 1814) // RESOURCE NAME NOT FOUND
-			strError += _T("资源ID未找到，请确认IDR_HTML_HELP是否正确");
-
-		AfxMessageBox(strError);
-
-		return _T("");
-	}
-
-	// 2. 加载资源
-	HGLOBAL hMemory = LoadResource(AfxGetResourceHandle(), hResource);
-	if (!hMemory)
-	{
-		AfxMessageBox(_T("加载资源失败"));
-		return _T("");
-	}
-
-	// 3. 获取资源数据和大小
-	DWORD dwSize = SizeofResource(AfxGetResourceHandle(), hResource);
-	LPVOID pData = LockResource(hMemory);
-
-	// 4. 创建临时文件
-	TCHAR szTempPath[MAX_PATH];
-	TCHAR szTempFile[MAX_PATH];
-	GetTempPath(MAX_PATH, szTempPath);
-	GetTempFileName(szTempPath, _T("MFC"), 0, szTempFile);
-
-	// 确保扩展名为.html
-	CString strTempFile = szTempFile;
-	strTempFile = strTempFile.Left(strTempFile.ReverseFind('.')) + _T(".html");
-
-	// 5. 写入HTML内容到临时文件
-	CFile file;
-	if (file.Open(strTempFile, CFile::modeCreate | CFile::modeWrite))
-	{
-		file.Write(pData, dwSize);
-		file.Close();
-		return strTempFile;
-	}
-
-	return _T("");
-}
-
 void CMFCApplication1Dlg::On32776()
 {
 	// TODO: 在此添加命令处理程序代码
 
-	CString strTempFile = CreateTempHtmlFromResource(IDR_HTML1);
+	
 
 	// 2. 用默认浏览器打开
 	if (!strTempFile.IsEmpty())
 	{
-		OpenHtmlResourceViaDataUrl(strTempFile);
+		CreateTemphtml.OpenHtmlResourceViaDataUrl(strTempFile);
 
 		// 可选：程序退出时删除临时文件
 		m_strTempHtmlFile = strTempFile; // 保存到成员变量
@@ -564,5 +410,27 @@ void CMFCApplication1Dlg::ListBoxFormat()
 
 	// 2. 应用字体到ListBox（假设ID为IDC_LIST1）
 	GetDlgItem(IDC_LIST1)->SetFont(&m_listFont);
+
+}
+CMFCApplication1Dlg ::~CMFCApplication1Dlg() {
+	//TRACE(_T("123"));
+		if (!m_strTempHtmlFile.IsEmpty() && PathFileExists(m_strTempHtmlFile))
+		{
+			DeleteFile(m_strTempHtmlFile);
+			//TRACE(_T("321"));
+		}
+
+		delete pTD;
+		
+}
+
+void CMFCApplication1Dlg::On32779()
+{
+	LoadClipboarddlg *m_dlg = nullptr;
+	// TODO: 在此添加命令处理程序代码
+
+	m_dlg = new LoadClipboarddlg();
+	m_dlg->Create(IDD_DIALOG3, this);
+	m_dlg->ShowWindow(SW_SHOW);
 
 }

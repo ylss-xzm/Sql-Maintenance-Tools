@@ -42,6 +42,18 @@
     <ClInclude Include="sqlscripts.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CreateTemphtml.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DataProcess.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipboardHistoryManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadClipboarddlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -62,6 +74,18 @@
     <ClCompile Include="sqlscripts.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CreateTemphtml.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DataProcess.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipboardHistoryManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadClipboarddlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MFCApplication1.rc">
@@ -80,59 +104,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="res\sql\0.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\1.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\2.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\3.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\4.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\5.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\6.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\7.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\8.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\9.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\10.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\11.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\12.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\13.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\14.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\15.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\16.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="res\sql\Cross Training - Minisoft.txt">
-      <Filter>资源文件</Filter>
-    </Text>
+    <Text Include="res\sql\0.txt" />
   </ItemGroup>
 </Project>

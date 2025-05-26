@@ -8,6 +8,10 @@
 #include"repalcetxt.h"
 #include <shellapi.h> 
 #include <windows.h>
+#include"CreateTemphtml.h"
+#include"DataProcess.h"
+#include"ClipboardHistoryManager.h"
+#include"LoadClipboarddlg.h"
 
 
 // CtoolsDlg 对话框
@@ -17,16 +21,11 @@ class CMFCApplication1Dlg : public CDialogEx
 public:
 	CMFCApplication1Dlg(CWnd* pParent = nullptr);	// 标准构造函数
 
-	~CMFCApplication1Dlg() {
-		if (!m_strTempHtmlFile.IsEmpty() && PathFileExists(m_strTempHtmlFile))
-		{
-			DeleteFile(m_strTempHtmlFile);
-		}
-	}
+	virtual ~CMFCApplication1Dlg();
 
 	// 对话框数据
 #ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_TOOLS_DIALOG };
+	enum { IDD = IDD_MFCAPPLICATION1_DIALOG};
 #endif
 
 protected:
@@ -61,27 +60,29 @@ public:
 	CEdit m_Edit;
 	INPTBOX INPT;
 	sqlscripts splspt;
-	CString DataProcessLogic(int i, int nLineCount, CString strLine, CString str);
-	CString DataProcessLogica(int i, int nLineCount, CString strLine, CString str, CString CLNAME1);
+	CreateTemphtml CreateTemphtml;
 	afx_msg void On32775();
 	afx_msg void On32772();
 	CFont m_font;
+	DataProcess DataProcess;
 
 private:
 	repalcetxt *pTD = NULL;
 	CString ptxt1;
 	CString ptxt2;
 	CString Ptxt;
-	CString CMFCApplication1Dlg::CreateTempHtmlFromResource(UINT nIDResource);
+
 	CString m_strTempHtmlFile;
+	CString strTempFile;
 
 protected:
 	afx_msg LRESULT OnMtMessage(WPARAM wParam, LPARAM lParam);
 	afx_msg void On32776();
-	afx_msg void OnEnChangeEdit3();
+	
 public:
-
+	ClipboardHistoryManager m_ClipboardHistoryManager;
 	void ListBoxFormat();
+	afx_msg void On32779();
 };
 
 

@@ -187,8 +187,12 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ClipboardHistoryManager.h" />
+    <ClInclude Include="CreateTemphtml.h" />
+    <ClInclude Include="DataProcess.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="INPTBOX.h" />
+    <ClInclude Include="LoadClipboarddlg.h" />
     <ClInclude Include="MFCApplication1.h" />
     <ClInclude Include="MFCApplication1Dlg.h" />
     <ClInclude Include="pch.h" />
@@ -198,7 +202,11 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ClipboardHistoryManager.cpp" />
+    <ClCompile Include="CreateTemphtml.cpp" />
+    <ClCompile Include="DataProcess.cpp" />
     <ClCompile Include="INPTBOX.cpp" />
+    <ClCompile Include="LoadClipboarddlg.cpp" />
     <ClCompile Include="MFCApplication1.cpp" />
     <ClCompile Include="MFCApplication1Dlg.cpp" />
     <ClCompile Include="pch.cpp">
@@ -222,23 +230,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\sql\0.txt" />
-    <Text Include="res\sql\1.txt" />
-    <Text Include="res\sql\10.txt" />
-    <Text Include="res\sql\11.txt" />
-    <Text Include="res\sql\12.txt" />
-    <Text Include="res\sql\13.txt" />
-    <Text Include="res\sql\14.txt" />
-    <Text Include="res\sql\15.txt" />
-    <Text Include="res\sql\16.txt" />
-    <Text Include="res\sql\2.txt" />
-    <Text Include="res\sql\3.txt" />
-    <Text Include="res\sql\4.txt" />
-    <Text Include="res\sql\5.txt" />
-    <Text Include="res\sql\6.txt" />
-    <Text Include="res\sql\7.txt" />
-    <Text Include="res\sql\8.txt" />
-    <Text Include="res\sql\9.txt" />
-    <Text Include="res\sql\Cross Training - Minisoft.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

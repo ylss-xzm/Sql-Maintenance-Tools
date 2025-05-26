@@ -24,6 +24,8 @@ public:
 public:
 	virtual BOOL InitInstance();
 
+	CString m_strClipboardHistoryPath;
+
 // 实现
 
 	DECLARE_MESSAGE_MAP()

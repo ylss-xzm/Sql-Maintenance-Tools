@@ -38,6 +38,8 @@ bool sqlscripts::readsqldata(UINT uID, int i)
 	//	strText = strText+ CString(strLine) + _T("\r\n");
 	//}
 	sqlmap.SetAt(i, str);
+	
+	
 
 }
 //此处用于处理中文乱码问题
