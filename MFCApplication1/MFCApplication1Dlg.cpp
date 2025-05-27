@@ -87,6 +87,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_MESSAGE(WM_MY_LOADCLIPBOARDDLG, OnClipboardTextChanged)
 
 	ON_COMMAND(ID_32779, &CMFCApplication1Dlg::On32779)
 END_MESSAGE_MAP()
@@ -433,4 +434,17 @@ void CMFCApplication1Dlg::On32779()
 	m_dlg->Create(IDD_DIALOG3, this);
 	m_dlg->ShowWindow(SW_SHOW);
 
+}
+LRESULT CMFCApplication1Dlg::OnClipboardTextChanged(WPARAM wParam, LPARAM lParam)
+{
+	CString* pText = reinterpret_cast<CString*>(wParam); // 注意：这里接收的是堆分配的CString对象，必须手动删除
+
+	if (pText != nullptr)
+	{
+		m_Edit.SetWindowTextW(*pText);
+
+		delete pText;
+	}
+
+	return 0;
 }

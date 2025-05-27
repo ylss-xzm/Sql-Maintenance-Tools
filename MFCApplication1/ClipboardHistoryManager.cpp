@@ -144,6 +144,9 @@ BOOL ClipboardHistoryManager::SaveToExternalFile(const CString& strData, LPCTSTR
 	{
 		CStdioFile file;
 
+		char* old_locale = _strdup(setlocale(LC_CTYPE, NULL));
+		setlocale(LC_CTYPE, "chs");
+
 		if (!file.Open(lpszFilePath,
 			CFile::modeWrite | CFile::modeCreate | CFile::modeNoTruncate | CFile::typeText))
 		{
@@ -175,6 +178,9 @@ BOOL ClipboardHistoryManager::SaveToExternalFile(const CString& strData, LPCTSTR
 			file.WriteString(strRecord);
 
 			file.Close();
+
+			setlocale(LC_CTYPE, old_locale);
+			free(old_locale);
 
 			return true;
 		}

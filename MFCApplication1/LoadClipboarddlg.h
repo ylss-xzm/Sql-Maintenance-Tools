@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "ClipboardHistoryManager.h"
+#define WM_MY_LOADCLIPBOARDDLG (WM_USER + 101) 
 
 // LoadClipboarddlg 对话框
 

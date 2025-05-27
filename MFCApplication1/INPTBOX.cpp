@@ -28,6 +28,7 @@ void INPTBOX::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(INPTBOX, CDialogEx)
+	ON_BN_CLICKED(IDOK, &INPTBOX::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -39,5 +40,12 @@ void INPTBOX::OnBnClickedOk()
 	// TODO: 在此添加控件通知处理程序代码
 	GetDlgItemText(IDC_EDIT1, Clname);
 
-	CDialogEx::OnOK();
+	if (Clname.IsEmpty())
+	{
+		MessageBox(_T("字段不能为空"));
+	}
+	else
+	{
+		CDialogEx::OnOK();
+	}
 }

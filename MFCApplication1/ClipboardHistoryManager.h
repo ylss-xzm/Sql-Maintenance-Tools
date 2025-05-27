@@ -1,7 +1,8 @@
 #pragma once
 #include "afxwin.h"
-#define WM_MY_CLIPBOARD (WM_USER + 101) 
+#include <locale.h>
 #include "MFCApplication1.h"
+
 class ClipboardHistoryManager : public CWnd
 {
 

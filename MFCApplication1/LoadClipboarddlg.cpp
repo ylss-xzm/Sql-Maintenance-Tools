@@ -92,6 +92,9 @@ void  LoadClipboarddlg::OnLoadClipboard(LPCTSTR lpszFilePath)
 
 	CArray<ClipItem> arrItems;
 
+	char* old_locale = _strdup(setlocale(LC_CTYPE, NULL));
+	setlocale(LC_CTYPE, "chs");
+
 	try {
 		CStdioFile file;
 		if (!file.Open(lpszFilePath, CFile::modeRead | CFile::typeText)) {
@@ -103,6 +106,7 @@ void  LoadClipboarddlg::OnLoadClipboard(LPCTSTR lpszFilePath)
 		CString strText;
 		int i = 0;
 		ClipItem item;
+
 
 
 		while (file.ReadString(strLine)) {
@@ -184,6 +188,8 @@ void  LoadClipboarddlg::OnLoadClipboard(LPCTSTR lpszFilePath)
 		AfxMessageBox(_T("未知异常"));
 	}
 
+	setlocale(LC_CTYPE, old_locale);
+	free(old_locale);
 }
 
 void LoadClipboarddlg::OnLbnDblclkList1()
@@ -214,7 +220,14 @@ void LoadClipboarddlg::OnLbnDblclkList1()
 			}
 			CloseClipboard();
 		}
+
+		CString richtext = _T("剪切板已复制以下内容: \r\n")+ strFullText;
+
+		AfxGetMainWnd()->SendMessage(WM_MY_LOADCLIPBOARDDLG,
+			(WPARAM)new CString(richtext),
+			0);//这里将获取到的数据传送给主窗口
 	}
+
 	DestroyWindow();
 }
 

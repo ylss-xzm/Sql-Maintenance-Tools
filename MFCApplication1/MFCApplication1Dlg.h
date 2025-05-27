@@ -78,6 +78,7 @@ private:
 protected:
 	afx_msg LRESULT OnMtMessage(WPARAM wParam, LPARAM lParam);
 	afx_msg void On32776();
+	LRESULT OnClipboardTextChanged(WPARAM wParam, LPARAM lParam);
 	
 public:
 	ClipboardHistoryManager m_ClipboardHistoryManager;
