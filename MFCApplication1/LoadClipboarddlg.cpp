@@ -167,7 +167,7 @@ void  LoadClipboarddlg::OnLoadClipboard(LPCTSTR lpszFilePath)
 			strDisplay.Format(_T("[%s] %s"),
 				CTime(arrItems[i].time).Format("%Y-%m-%d %H:%M:%S"),
 				arrItems[i].content);
-			m_arrRawData.Add(arrItems[i].content.Trim());
+			m_arrRawData.Add(arrItems[i].content);
 			//strText = arrItems[i].content;
 			//AfxMessageBox(strText);
 			CString PreviewText;
