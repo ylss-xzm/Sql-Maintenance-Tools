@@ -60,7 +60,7 @@ CString DataProcess::DataProcessLogic(int i, int nLineCount, CString strLine, CS
 	else if (i % 980 == 0)
 	{
 		if (strLine1.IsEmpty() == false)
-			strdate = strdate + _T(") OR ") + CLNAME2 + _T(" IN (") + _T("'") + strLine1 + _T("'");
+			strdate = strdate + _T(") \r\n  OR ") + CLNAME2 + _T(" IN (") + _T("'") + strLine1 + _T("'");
 	}
 	else
 	{

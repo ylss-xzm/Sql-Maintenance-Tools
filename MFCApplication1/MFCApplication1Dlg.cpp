@@ -133,6 +133,7 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 
 	OnIntlist();
 
+	m_Edit.LimitText(-1);//解除文本编辑框中，文本数据限制的问题
 
 	ListBoxFormat();
 
