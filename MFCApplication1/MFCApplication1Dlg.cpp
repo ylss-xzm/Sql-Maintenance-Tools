@@ -7,6 +7,7 @@
 #include "MFCApplication1Dlg.h"
 #include "MFCApplication1.h"
 #include "afxdialogex.h"
+#include <shellapi.h> 
 
 
 
@@ -81,7 +82,9 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_COMMAND(ID_32775, &CMFCApplication1Dlg::On32775)
 	ON_COMMAND(ID_32772, &CMFCApplication1Dlg::On32772)
 	ON_MESSAGE(WM_MY_DIALOG_CLOSED, &CMFCApplication1Dlg::OnMtMessage)
-	ON_COMMAND(ID_32776, &CMFCApplication1Dlg::On32776)
+	//ON_COMMAND(ID_32776, &CMFCApplication1Dlg::On32776)
+	ON_COMMAND(ID_32782, &CMFCApplication1Dlg::On32782)  //  吃白饭的大肥鱼
+	ON_COMMAND(ID_32784, &CMFCApplication1Dlg::On32784) //  4399一下
 	ON_WM_CTLCOLOR()
 
 	ON_WM_SYSCOMMAND()
@@ -90,6 +93,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_MESSAGE(WM_MY_LOADCLIPBOARDDLG, OnClipboardTextChanged)
 
 	ON_COMMAND(ID_32779, &CMFCApplication1Dlg::On32779)
+	
 END_MESSAGE_MAP()
 
 
@@ -133,7 +137,7 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 
 	OnIntlist();
 
-	m_Edit.LimitText(-1);//解除文本编辑框中，文本数据限制的问题
+	//m_Edit.LimitText(-1);//解除文本编辑框中，文本数据限制的问题
 
 	ListBoxFormat();
 
@@ -342,24 +346,41 @@ afx_msg LRESULT CMFCApplication1Dlg::OnMtMessage(WPARAM wParam, LPARAM lParam)
 	delete pDialog;
 	return 0;
 }
-
-
-void CMFCApplication1Dlg::On32776()
+// 用默认浏览器打开大肥鱼
+void CMFCApplication1Dlg::On32782()
 {
-	// TODO: 在此添加命令处理程序代码
+	CString strUrl = _T("https://chat.deepseek.com/");
 
-	
+	::ShellExecute(AfxGetMainWnd()->GetSafeHwnd(), _T("open"), strUrl, NULL, NULL, SW_SHOW);
 
-	// 2. 用默认浏览器打开
-	if (!strTempFile.IsEmpty())
-	{
-		CreateTemphtml.OpenHtmlResourceViaDataUrl(strTempFile);
-
-		// 可选：程序退出时删除临时文件
-		m_strTempHtmlFile = strTempFile; // 保存到成员变量
-
-	}
 }
+
+// 用默认浏览器玩一下4399
+void CMFCApplication1Dlg::On32784()
+{
+	CString strUrl = _T("https://www.4399.com/h5xyx/");
+
+	::ShellExecute(AfxGetMainWnd()->GetSafeHwnd(), _T("open"), strUrl, NULL, NULL, SW_SHOW);
+
+}
+
+
+//void CMFCApplication1Dlg::On32776()
+//{
+//	// TODO: 在此添加命令处理程序代码
+//
+//	
+//
+//	// 2. 用默认浏览器打开
+//	if (!strTempFile.IsEmpty())
+//	{
+//		CreateTemphtml.OpenHtmlResourceViaDataUrl(strTempFile);
+//
+//		// 可选：程序退出时删除临时文件
+//		m_strTempHtmlFile = strTempFile; // 保存到成员变量
+//
+//	}
+//}
 
 
 void CMFCApplication1Dlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
@@ -449,3 +470,22 @@ LRESULT CMFCApplication1Dlg::OnClipboardTextChanged(WPARAM wParam, LPARAM lParam
 
 	return 0;
 }
+// 使用默认浏览器打开地址
+void CMFCApplication1Dlg::OpenUrlWithDefaultBrowser(const CString& strUrl)
+{
+	// 调用 ShellExecute
+	// 参数1: 父窗口句柄，可为NULL
+	// 参数2: 操作动词， "open" 表示打开
+	// 参数3: 要打开的URL
+	// 参数4、5: 参数，通常为NULL
+	// 参数6: 窗口显示方式，SW_SHOWNORMAL 表示正常显示
+	HINSTANCE hInst = ShellExecute(NULL, _T("open"), strUrl, NULL, NULL, SW_SHOWNORMAL);
+
+	// 简单的错误检查
+	if ((int)hInst <= 32)
+	{
+		// 处理错误，例如弹出提示框
+		AfxMessageBox(_T("无法打开默认浏览器！"));
+	}
+}
+

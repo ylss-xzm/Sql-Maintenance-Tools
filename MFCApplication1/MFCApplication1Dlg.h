@@ -77,8 +77,12 @@ private:
 
 protected:
 	afx_msg LRESULT OnMtMessage(WPARAM wParam, LPARAM lParam);
-	afx_msg void On32776();
+	afx_msg void On32782(); // 启动大肥鱼
+	afx_msg void On32784(); // 4399 小游戏
+	//afx_msg void On32776();
 	LRESULT OnClipboardTextChanged(WPARAM wParam, LPARAM lParam);
+
+	void OpenUrlWithDefaultBrowser(const CString & strUrl);
 	
 public:
 	ClipboardHistoryManager m_ClipboardHistoryManager;

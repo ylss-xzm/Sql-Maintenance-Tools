@@ -1,5 +1,29 @@
-1
-23
-4
-5
-6
+SELECT DATE_SUB('2023-10-15', INTERVAL 1 MONTH) AS Result; --- 日期处理函数
+
+SELECT DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s') AS formatted_date; -- 日期格式化函数
+
+-- 添加一个名为 uv 的 BIGINT 类型字段，默认值为 0，添加在 pv 字段之后
+ALTER TABLE table1 ADD COLUMN uv BIGINT SUM DEFAULT '0' AFTER pv;
+-- 查看字段添加进度
+SHOW ALTER TABLE COLUMN;
+
+insert into test values(1,N'苹果',1,1000)
+
+CREATE table test
+(id int,name nvarchar(20),quarter int,number int)
+
+TRUNCATE TABLE 表名;
+
+
+-- 行转列 (PIVOT)
+SELECT ID, Name, [1] AS '第一季度', [2] AS '第二季度'
+FROM TestTable
+PIVOT (SUM(Value) FOR Quarter IN ([1], [2])) AS PivotTable;
+
+-- 列转行 (UNPIVOT)
+SELECT ID, Name, Quarter, Value
+FROM TestTable
+UNPIVOT (Value FOR Quarter IN ([Q1], [Q2])) AS UnpivotTable;
+
+-- 字符串替换
+SELECT REPLACE('abcdefg', 'bcd', '**') AS Result;
