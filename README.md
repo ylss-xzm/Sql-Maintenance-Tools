@@ -15,3 +15,4 @@ Windows SDK 版本：10.0.17763.0
 
 其中里面的sql脚本文件必须使用UTF-8的字符集才能正常读取，代码的话，使用 Unicode 字符集即可读取
 
+Windows下载 [Release](https://github.com/ylss-xzm/Sql-Maintenance-Tools/releases/tag/sql-tools)
