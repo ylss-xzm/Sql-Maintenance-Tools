@@ -5,7 +5,7 @@
 
 目标平台：win10  
 
-Windows SDK 版本：10.0.17763.0
+Windows SDK 版本：10.0.19041.0
 
 平台工具集：Visual Studio 2017 (v141)
 
