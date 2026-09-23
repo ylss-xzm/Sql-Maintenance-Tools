@@ -88,6 +88,7 @@ public:
 	ClipboardHistoryManager m_ClipboardHistoryManager;
 	void ListBoxFormat();
 	afx_msg void On32779();
+	afx_msg void OnEnChangeRichedit21();
 };
 
 

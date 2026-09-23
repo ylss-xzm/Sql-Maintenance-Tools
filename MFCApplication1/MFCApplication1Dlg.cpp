@@ -385,9 +385,12 @@ void CMFCApplication1Dlg::On32784()
 
 void CMFCApplication1Dlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
-	// 设置最小宽度和高度（以像素为单位）
-	lpMMI->ptMinTrackSize.x = 800; // 最小宽度
-	lpMMI->ptMinTrackSize.y = 600; // 最小高度
+	// 获取当前 DPI 缩放比例
+	float scale = (float)GetDpiForWindow(m_hWnd) / 96.0f;
+
+	// 按 DPI 缩放最小尺寸
+	lpMMI->ptMinTrackSize.x = (LONG)(1 * scale);
+	lpMMI->ptMinTrackSize.y = (LONG)(480 * scale);
 
 	CDialogEx::OnGetMinMaxInfo(lpMMI);
 }
@@ -413,10 +416,16 @@ void CMFCApplication1Dlg::ListBoxFormat()
 	splspt.readsqldata(IDR_TEXT1, 0);
 
 
+	// 获取当前 DPI 缩放比例
+	UINT dpi = GetDpiForWindow(m_hWnd);
+	if (dpi == 0) dpi = 96;
+	float scale = (float)dpi / 96.0f;
 
+	// 26 是 100% 缩放下的设计字体高度，按比例缩放
+	int fontSize = (int)(21 * scale);
 
 	m_listFont.CreateFont(
-		26,                        // 字体高度
+		fontSize,                 // 字体高度，负值表示字符高度（推荐）
 		0,                         // 宽度
 		0,                         // 倾斜角度
 		0,                         // 方向角度
